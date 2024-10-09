@@ -5,21 +5,18 @@
 </head>
 <body>
 <form action="<?php print(_APP_URL);?>/app/calc.php" method="post">
-	<label for="kwota">Kwota: </label>
-	<input id="kwota" type="text" name="kwota" value="<?php isset($kwota)?print($kwota):" "; ?>" /><br />
-	
-	<label for="kurs">Kurs: </label>
-	<input id="kurs" type="text" name="kurs" value="<?php isset($kurs)?print($kurs):" "; ?>" /><br />
-	<label >Operacja: </label><br>
-	<input type="radio" name="op" value="pln-eur" ><label>Złotówki na Euro</label><br />
-	<input type="radio" name="op" value="eur-pln"><label>Euro na Złotówki</label><br />
+	Kwota:<input id="kwota" type="text" name="kwota" value="<?php isset($kwota)?print($kwota):" "; ?>" /><br />
+	Kurs:<input id="kurs" type="text" name="kurs" value="<?php isset($kurs)?print($kurs):" "; ?>" /><br />
+	Operacja:<br>
+	<input type="radio" name="op" value="pln-eur" >Złotówki na Euro<br/>
+	<input type="radio" name="op" value="eur-pln">Euro na Złotówki<br/>
 	<input type="submit" value="Oblicz" />
 </form>	
 <?php 
       $kwota = isset($kwota) ? $kwota : '';
       $kurs = isset($kurs) ? $kurs : ''; 
 
-	  if(isset($_POST['op'])){
+	  if( isset($_POST['op']) && (($_POST['op'])) == "pln-eur" ){
 		$waluta = " Euro";
 	  } else {
 		$waluta = " Złoty";
@@ -37,7 +34,7 @@
 ?>
 
 <?php if (isset($result)){ ?>
-<div style="margin: 20px; padding: 10px; border-radius: 5px; background-color: red; width:300px;">
+	<div style="margin: 20px; padding: 10px; border-radius: 5px; background-color: #ff0; width:300px;">
 <?php echo 'Możesz kupić: '.$result . $waluta;?>
 </div>
 <?php } ?>
